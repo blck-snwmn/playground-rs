@@ -11,6 +11,18 @@ fn main() {
 
             ControlFlow::Continue(())
         });
-        assert_eq!(r, ControlFlow::Break(13));
+        println!("{:?}", r)
+    }
+    {
+        // 最後まで表示される。
+        let r = (2..10).fold(ControlFlow::Continue(()), |acc, x| {
+            println!("[{}]", x);
+            if 7 % x == 0 {
+                return ControlFlow::Break(x);
+            }
+
+            ControlFlow::Continue(())
+        });
+        println!("{:?}", r)
     }
 }
