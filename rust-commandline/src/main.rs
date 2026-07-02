@@ -1,29 +1,29 @@
-use clap::Clap;
+use clap::{Args, Parser, Subcommand};
 
 // can't rename `Option`
-#[derive(Clap)]
-#[clap(version = "1.0", author = "snowan")]
+#[derive(Parser)]
+#[command(version = "1.0", author = "snowan")]
 struct Opts {
     // hello!
-    #[clap(short, long, default_value = "hello world!")]
+    #[arg(short, long, default_value = "hello world!")]
     greet_message: String,
     // anything
     anything: String,
     // subcommand
-    #[clap(subcommand)]
+    #[command(subcommand)]
     subcmd: SubCommand,
 }
 
-#[derive(Clap)]
+#[derive(Subcommand)]
 enum SubCommand {
-    #[clap(version = "1.3", author = "snowman")]
+    #[command(version = "1.3", author = "snowman")]
     Run(Mode),
 }
 
-#[derive(Clap)]
+#[derive(Args)]
 struct Mode {
     // if true, dry run
-    #[clap(long)]
+    #[arg(long)]
     dry_run: bool,
 }
 
