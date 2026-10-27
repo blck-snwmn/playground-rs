@@ -18,4 +18,4 @@ jobs:
           persist-credentials: false
       - name: Build rust-commandline
         working-directory: rust-commandline
-        run: cargo build
+        run: cargo build --locked
